@@ -1,0 +1,5 @@
+input[id="first_name"]
+//input[@name="last_name_field"]
+input.email-required
+//input[@data-form-type="input_phone"]
+//input[@class="form-control address-optional"]
