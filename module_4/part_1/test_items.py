@@ -11,13 +11,12 @@ button_cart_locator = ".btn-add-to-basket"
 
 
 def test_button_basket(browser, button_cart_name_dictionary):
+    # Arrange
     browser.get(link_product_page)
 
-    WebDriverWait(browser, 5).until(
-        EC.visibility_of_element_located((By.CSS_SELECTOR, button_cart_locator)),
-        message="Нет кнопки добавления товара в корзину"
-    )
-
+    # Act
     actual_name_button_cart = browser.find_element_by_css_selector(button_cart_locator).get_attribute('value')
+
+    # Assert
     assert actual_name_button_cart == button_cart_name_dictionary, \
         f"Ожидаемое название кнопки - {button_cart_name_dictionary}, фактическое название - {actual_name_button_cart}"
