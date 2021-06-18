@@ -7,7 +7,7 @@ from .pages.basket_page import BasketPage
 link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
 
 
-class TestMainPage:
+class TestProductPage:
     @pytest.mark.parametrize('promo_offer',
                              ["offer0", "offer1", "offer2", "offer3", "offer4", "offer5", "offer6",
                               pytest.param("offer7", marks=pytest.mark.xfail), "offer8", "offer9"])
