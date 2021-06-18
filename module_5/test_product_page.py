@@ -59,3 +59,26 @@ class TestProductPage:
         basket_page = BasketPage(browser, browser.current_url)
         basket_page.should_not_be_product_in_basket_page()
         basket_page.should_be_message_empty_basket()
+
+
+class TestUserAddToBasketFromProductPage():
+    @pytest.fixture(autouse=True)
+    def setup(self, browser):
+        url = "https://selenium1py.pythonanywhere.com/accounts/login/"
+        page = LoginPage(browser, url)
+        page.open()
+        page.register_new_user(page.generate_email(), page.generate_password())
+        page.should_be_authorized_user()
+
+    def test_user_can_add_product_to_basket(self, browser):
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_be_product_page()
+        page.add_product_to_basket()
+        page.should_be_message_with_title_product()
+        page.should_be_message_with_price_product()
+
+    def test_user_cant_see_success_message(self, browser):
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_not_be_success_message()

@@ -1,8 +1,23 @@
 from .base_page import BasePage
 from .locators import LoginPageLocators
+import time
 
 
 class LoginPage(BasePage):
+    def generate_email(self):
+        email = str(time.time()) + "@fakemail.org"
+        return email
+
+    def generate_password(self):
+        password = str(time.time()) + "FakePwd"
+        return password
+
+    def register_new_user(self, email, password):
+        self.browser.find_element(*LoginPageLocators.INPUT_EMAIL_REGISTER).send_keys(email)
+        self.browser.find_element(*LoginPageLocators.INPUT_PWD_REGISTER).send_keys(password)
+        self.browser.find_element(*LoginPageLocators.INPUT_PWD_CONFIRM_REGISTER).send_keys(password)
+        self.browser.find_element(*LoginPageLocators.BUTTON_REGISTER).click()
+
     def should_be_login_form(self):
         assert self.is_element_present(*LoginPageLocators.LOGIN_FORM), "Login form is not presented"
 
