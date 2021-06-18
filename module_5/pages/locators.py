@@ -23,3 +23,11 @@ class ProductPageLocators():
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    BUTTON_BASKET = (By.CSS_SELECTOR, ".basket-mini .btn")
+    LANGUAGE_PAGE = (By.TAG_NAME, "html")
+
+
+class BasketPageLocators():
+    TABLE_ADDED_PRODUCT = (By.CSS_SELECTOR, ".basket_summary")
+    TITLE_PAGE_BASKET = (By.CSS_SELECTOR, ".page-header h1")
+    MESSAGE_EMPTY_BASKET = (By.CSS_SELECTOR, "#content_inner p")
