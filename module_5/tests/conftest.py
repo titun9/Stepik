@@ -1,10 +1,13 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from datetime import datetime
 
 
 def pytest_addoption(parser):
     parser.addoption('--language', action='store', default='en-GB')
+    parser.addoption('--browser', action='store', default="chrome",
+                     help="Choose browser: chrome or firefox")
 
 
 def language(request):
@@ -31,7 +34,18 @@ def browser(request):
     get_language = language(request)
     prefs = {'intl.accept_languages': get_language}
     add_options.add_experimental_option("prefs", prefs)
-    driver = webdriver.Chrome(options=add_options)
+    browser_name = request.config.getoption("browser")
+    if browser_name == "chrome":
+        print("\nstart chrome browser for test..")
+        driver = webdriver.Chrome(options=add_options)
+    elif browser_name == "firefox":
+        print("\nstart firefox browser for test..")
+        driver = webdriver.Firefox(options=add_options)
+    else:
+        print("Browser {} still is not implemented".format(browser_name))
+    driver.maximize_window()
     driver.implicitly_wait(3)
     yield driver
+    now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+    driver.save_screenshot('module_5/tests/Screenshots/screenshot-%s.png' % now)
     driver.quit()
