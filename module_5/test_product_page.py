@@ -3,7 +3,6 @@ import pytest
 from module_5.pages.login_page import LoginPage
 from module_5.pages.basket_page import BasketPage
 
-
 link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
 
 
@@ -16,8 +15,6 @@ class TestProductPage:
         url = link + '?promo=' + promo_offer
         page = ProductPage(browser, url)
         page.open()
-
-        # Assert
         page.should_be_product_page()
 
         # Act
@@ -107,8 +104,6 @@ class TestUserAddToBasketFromProductPage():
         # Arrange
         page = ProductPage(browser, link)
         page.open()
-
-        # Assert
         page.should_be_product_page()
 
         # Act

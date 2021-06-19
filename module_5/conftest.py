@@ -47,5 +47,5 @@ def browser(request):
     driver.implicitly_wait(3)
     yield driver
     now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-    driver.save_screenshot('module_5/tests/Screenshots/screenshot-%s.png' % now)
+    driver.save_screenshot('module_5/Screenshots/screenshot-%s.png' % now)
     driver.quit()
