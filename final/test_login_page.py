@@ -43,8 +43,8 @@ class TestLoginPage:
         page.user_should_be_logged_in()
 
     @pytest.mark.parametrize('incorrect_email',
-                             ["@mail.ru", "new_user_123@mail.", "new_user_123@.ru",
-                              "new_user_123mail.ru", "new_user_123@mailru", "new_user_123"])
+                             ["@mail.ru", "new_user_123@mail.",
+                              "new_user_123@.ru", "new_user_123mail.ru"])
     def test_user_cant_register_with_incorrect_email(self, browser, incorrect_email):
         # Arrange
         page = LoginPage(browser, link)
